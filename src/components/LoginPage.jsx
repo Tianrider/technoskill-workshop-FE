@@ -1,69 +1,52 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
 
-import DashboardElement from "./elements/DashboardElement";
-
-export default function LoginPage() {
-	const [name, setName] = useState("");
-	const [password, setPassword] = useState("");
-
-	const navigate = useNavigate();
-	const handleLogin = async () => {
-		try {
-			const response = await axios.post(
-				"http://localhost:8000/manager/login",
-				{name, password}
-			);
-			if (response.status !== 200) throw new Error("Login failed");
-			console.log(response.data);
-			navigate("/home");
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
+function InputField({ label, type }) {
 	return (
-		<div className="bg-[#CED1DA] h-screen w-screen flex">
-			<DashboardElement />
-
-			<div className="bg-[#2B2E63] w-[622px] h-[675px] m-auto rounded-2xl flex flex-col text-white">
-				<p className="text-[30px] mx-auto mt-20">Login</p>
-
-				<div className="mx-auto mt-10">
-					<p className="text-[20px]">Name</p>
-					<input
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						className="bg-[#BFCBCE] w-[343px] h-[41px] text-gray-700 px-2"
-					/>
-				</div>
-
-				<div className="mx-auto mt-10">
-					<p className="text-[20px]">Password</p>
-					<input
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						className="bg-[#BFCBCE] w-[343px] h-[41px] text-gray-700 px-2"
-					/>
-				</div>
-
-				<div className="mx-auto mt-20 space-y-4">
-					<p
-						className="text-white underline"
-						onClick={() => navigate("/register")}
-					>
-						register?
-					</p>
-
-					<button
-						className="bg-[#6F90AF] p-2 px-3 rounded-2xl"
-						onClick={handleLogin}
-					>
-						Login
-					</button>
-				</div>
-			</div>
+		<div className="mb-6">
+			<label htmlFor={label.toLowerCase()} className="block mt-6 text-lg">{label}</label>
+			<input
+			type={type}
+			id={label.toLowerCase()}
+			className="shrink-0 mt-2 rounded-md border border-gray-400 border-solid h-[39px] w-full text-primary-black pl-2"
+			/>
 		</div>
 	);
 }
+
+function Button({ children, primary, secondary }) {
+	const baseClasses = "px-16 py-2.5 mt-3 text-base rounded max-md:px-5 w-full";
+	const primaryClasses = "bg-white text-stone-950";
+	const secondaryClasses = "border border-gray-400 border-solid";
+
+	return (
+		<button 
+		className={`${baseClasses} ${primary ? primaryClasses : ''} ${secondary ? secondaryClasses : ''}`}
+		>
+		{children}
+		</button>
+	);
+}
+
+function LoginPage() {
+	return (
+		<main className="font-sf flex gap-5 justify-between text-white bg-blend-normal bg-primary-gray max-md:flex-wrap">
+			<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/cd9e16b921abf8c15e074dd781c451f6559766e71e43c19f1fd07d90a941d926?apiKey=4672beb70c1f4f87acdddfc46df80afc&&apiKey=4672beb70c1f4f87acdddfc46df80afc" alt="" className="shrink-0 m-auto aspect-[0.74] w-[62px] max-sm:hidden" />
+			<section className="flex justify-center items-center px-16 py-20 w-1/2 h-screen bg-primary-black max-md:px-5 max-md:w-screen max-md:m-auto">
+				<div className="flex flex-col max-md:mt-10">
+					<h1 className="self-center text-2xl font-bold">Welcome back, Manager!</h1>
+					<p className="self-center mt-3.5 text-base">Enter your credentials to access your account</p>
+					<form>
+						<InputField label="Name" type="text" />
+						<InputField label="Password" type="password" />
+						<Button primary>Log in</Button>
+						<Button secondary>Sign in as employee</Button>
+					</form>
+					<p className="self-center mt-5 text-lg">
+						Don't have an account? <a href="#" className="text-white underline">Sign Up</a>
+					</p>
+				</div>
+			</section>
+		</main>
+	);
+}
+
+export default LoginPage;
