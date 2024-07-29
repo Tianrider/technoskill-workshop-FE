@@ -27,7 +27,7 @@ export default function LoginPage() {
 		<div className="bg-[#CED1DA] h-screen w-screen flex">
 			<DashboardElement />
 
-			<div className="bg-[#2B2E63] w-[622px] h-[675px] m-auto rounded-2xl flex flex-col text-white">
+			<div className="bg-[#2B2E63] w-full m-auto rounded-2xl flex flex-col text-white">
 				<p className="text-[30px] mx-auto mt-20">Login</p>
 
 				<div className="mx-auto mt-10">
