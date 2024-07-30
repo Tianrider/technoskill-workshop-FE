@@ -1,4 +1,4 @@
-import Logo from '../assets/logo_teggnoskyl.png';
+import Logo from '../assets/logo.svg';
 import '../styles/styles.css';
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ function InputForm({ label, type }) {
 			<input
 			type={type}
 			id={label.toLowerCase()}
-			className="shrink-0 mt-1 rounded-md border border-gray-400 border-solid h-[39px] w-full text-primary-black pl-2"
+			className="shrink-0 mt-1 rounded-md border border-gray-500 border-solid h-[39px] w-full text-primary-black pl-2"
 			placeholder={label}
 			/>
 		</div>
@@ -20,10 +20,10 @@ function RegisterPage() {
 
 	return (
 		<div className="font-sf flex gap-5 justify-between text-white bg-blend-normal bg-primary-gray max-md:flex-wrap">
-			<img loading="lazy" src={Logo} alt="" className="shrink-0 m-auto aspect-[0.74] w-[62px] max-md:hidden" />
+			<img loading="lazy" src={Logo} alt="" className="shrink-0 m-auto aspect-[0.74] w-[120px] max-md:hidden" />
 			<section className="flex justify-center items-center px-16 py-20 w-1/2 h-screen bg-primary-black max-md:px-5 max-md:w-screen max-md:m-auto">
-				<div className="flex flex-col w-3/4 max-md:mt-10 max-md:m-auto max-md:w-full">
-					<img loading="lazy" src={Logo} alt="" className="hidden max-md:block max-md:m-auto max-md:aspect-[0.74] max-md:w-[62px] max-md:mb-10" />
+				<div className="flex flex-col w-3/4 max-md:m-auto max-md:w-full">
+					<img loading="lazy" src={Logo} alt="" className="hidden max-md:block max-md:m-auto max-md:aspect-[0.74] max-md:w-[100px] max-md:mb-5" />
 					<h1 className="self-center text-2xl font-bold">Create an Account</h1>
 					<p className="self-center mt-2.5 text-base">Make sure to use your real identity!</p>
 					<form>
