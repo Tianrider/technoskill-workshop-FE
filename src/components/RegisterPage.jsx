@@ -16,8 +16,7 @@ function InputForm({ label, type }) {
 	);
 }
 
-function LoginPage() {
-	const navigate = useNavigate();
+function RegisterPage() {
 
 	return (
 		<div className="font-sf flex gap-5 justify-between text-white bg-blend-normal bg-primary-gray max-md:flex-wrap">
@@ -25,25 +24,21 @@ function LoginPage() {
 			<section className="flex justify-center items-center px-16 py-20 w-1/2 h-screen bg-primary-black max-md:px-5 max-md:w-screen max-md:m-auto">
 				<div className="flex flex-col w-3/4 max-md:m-auto max-md:w-full">
 					<img loading="lazy" src={Logo} alt="" className="hidden max-md:block max-md:m-auto max-md:aspect-[0.74] max-md:w-[100px] max-md:mb-5" />
-					<h1 className="self-center text-2xl font-bold">Welcome back, Manager!</h1>
-					<p className="self-center mt-2.5 text-base">Enter your credentials to access your account</p>
+					<h1 className="self-center text-2xl font-bold">Create an Account</h1>
+					<p className="self-center mt-2.5 text-base">Make sure to use your real identity!</p>
 					<form>
+                        <InputForm label="Business Name" type="text" />
 						<InputForm label="Email" type="text" />
 						<InputForm label="Password" type="password" />
+                        <InputForm label="Confirm Password" type="password" />
 						<button className="buttonhover px-16 py-2.5 mt-3 text-base rounded max-md:px-5 w-full">
-							Sign in
-						</button>
-						<button className="px-16 py-2.5 mt-3 text-base rounded max-md:px-5 w-full border border-gray-500 border-solid" onClick={() => navigate("/loginEmployee")}>
-							Sign in as Employee
+							Sign Up
 						</button>
 					</form>
-					<p className="self-center mt-5 text-lg">
-						Don't have an account? <a href="/register" className="text-white underline">Sign Up</a>
-					</p>
 				</div>
 			</section>
 		</div>
 	);
 }
 
-export default LoginPage;
+export default RegisterPage;
