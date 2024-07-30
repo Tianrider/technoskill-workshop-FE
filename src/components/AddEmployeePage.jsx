@@ -1,71 +1,71 @@
-import { useState } from "react";
 import DashboardElement from "./elements/DashboardElement";
-import axios from "axios";
+import { ChevronDown } from "lucide-react";
 
-export default function AddEmployeePage() {
-  const [name, setName] = useState("");
-  const [division, setDivision] = useState("");
-  const [salary, setSalary] = useState("");
-
-  const handleAddEmployee = async () => {
-    try {
-      const response = await axios.post("http://localhost:8000/employee/add", {
-        name,
-        division,
-        salary,
-      });
-
-      if (response.status !== 201) throw new Error("Add employee failed");
-
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <div className="flex h-screen w-screen bg-[#CED1DA]">
-      <DashboardElement />
-
-      <div className="m-auto flex h-[675px] w-[622px] flex-col rounded-2xl bg-[#2B2E63] text-white">
-        <p className="mx-auto mt-20 text-[30px]">Add New Employee</p>
-
-        <div className="mx-auto mt-10">
-          <p className="text-[20px]">Name</p>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="h-[41px] w-[343px] bg-[#BFCBCE] px-2 text-gray-700"
-          />
+function FormSelect({ label }) {
+    return (
+        <div className="mt-8 max-md:max-w-full">
+            <label className="text-lg text-white max-md:text-sm">{label}</label>
+            <div className="relative mt-1 flex h-[49px] w-full items-center justify-between rounded-md border border-solid border-gray-500 bg-primary-black text-white max-md:text-sm">
+                <select
+                    className="relative h-full w-full appearance-none rounded-md bg-primary-black px-2 text-white focus:border-white"
+                    name="division"
+                    id="division"
+                >
+                    <option value="" selected disabled>
+                        Select Division
+                    </option>
+                    <option value="">Engineering</option>
+                    <option value="">Marketing</option>
+                    <option value="">Sales</option>
+                </select>
+                <ChevronDown
+                    size={24}
+                    className="absolute right-0 mr-1 text-gray-500"
+                />
+            </div>
         </div>
-
-        <div className="mx-auto mt-10">
-          <p className="text-[20px]">Division</p>
-          <input
-            value={division}
-            onChange={(e) => setDivision(e.target.value)}
-            className="h-[41px] w-[343px] bg-[#BFCBCE] px-2 text-gray-700"
-          />
-        </div>
-
-        <div className="mx-auto mt-10">
-          <p className="text-[20px]">Salary</p>
-          <input
-            value={salary}
-            onChange={(e) => setSalary(e.target.value)}
-            className="h-[41px] w-[343px] bg-[#BFCBCE] px-2 text-gray-700"
-          />
-        </div>
-
-        <div className="mx-auto mt-20">
-          <button
-            className="rounded-2xl bg-[#6F90AF] p-2 px-3"
-            onClick={handleAddEmployee}
-          >
-            Add
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
+
+function FormInput({ label, type, placeholder }) {
+    return (
+        <div className="mt-8 max-md:max-w-full">
+            <label className="text-lg text-white max-md:text-sm">{label}</label>
+            <input
+                type={type}
+                className="mt-1 h-[49px] w-full shrink-0 rounded-md border border-solid border-gray-500 bg-primary-black px-2 py-4 text-white"
+                placeholder={placeholder}
+            />
+        </div>
+    );
+}
+
+function AddEmployeePage() {
+    return (
+        <div className="flex h-screen bg-white font-sf bg-blend-normal max-md:flex-wrap">
+            <DashboardElement />
+            <section className="flex w-fit shrink-0 grow basis-0 items-center justify-center bg-primary-black px-16 py-20 max-md:max-w-full max-md:px-5">
+                <form className="mx-auto flex w-[510px] max-w-full flex-col rounded-3xl border border-solid border-gray-500 bg-primary-gray px-8 py-9 max-md:mt-10 max-md:px-5">
+                    <h2 className="text-3xl font-bold text-white max-md:max-w-full">
+                        Add New Employee
+                    </h2>
+                    <p className="mt-2.5 text-lg text-white max-md:max-w-full max-md:text-sm">
+                        Fill out the form to add a new employee to your team.
+                    </p>
+                    <FormInput label="Name" placeholder="Enter Employee Name" />
+                    <FormSelect label="Division" />
+                    <FormInput
+                        label="Salary"
+                        type="number"
+                        placeholder="Enter Salary"
+                    />
+                    <button className="buttonhover mt-10 self-end rounded bg-white px-5 py-3 text-center text-lg text-primary-black max-md:px-5">
+                        Add Employee
+                    </button>
+                </form>
+            </section>
+        </div>
+    );
+}
+
+export default AddEmployeePage;
