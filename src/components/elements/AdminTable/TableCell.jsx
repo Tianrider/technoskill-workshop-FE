@@ -111,7 +111,7 @@ const TableCell = ({ item }) => {
                     {formatCurrency(item.salary)}
                 </td>
                 <td className="px-4">
-                    <div className="flex items-center justify-center gap-2 md:justify-start">
+                    <div className="relative flex items-center justify-center gap-2 md:static md:justify-start">
                         <button
                             className="hidden rounded-md border-[1px] border-gray-400 border-opacity-20 px-2 py-2 hover:bg-primary-black md:block"
                             onClick={() => setEditPopUp(true)}
