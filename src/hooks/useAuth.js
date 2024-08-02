@@ -2,12 +2,15 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
+// Retrieve the API URL from environment variables
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function useAuth() {
     const navigate = useNavigate();
 
     const managerLogin = async (email, password) => {
         try {
-            const response = await axios.post("/api/manager/login", {
+            const response = await axios.post(`${API_URL}/manager/login`, {
                 email,
                 password,
             });
@@ -27,7 +30,7 @@ export default function useAuth() {
 
     const verifyToken = async (token) => {
         try {
-            const response = await axios.get("/api/token", {
+            const response = await axios.get(`${API_URL}/token`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -42,7 +45,7 @@ export default function useAuth() {
 
     const registerManager = async (name, name_business, email, password) => {
         try {
-            const response = await axios.post("/api/manager/register", {
+            const response = await axios.post(`${API_URL}/manager/register`, {
                 name,
                 name_business,
                 email,
@@ -58,7 +61,7 @@ export default function useAuth() {
 
     const employeeLogin = async (email, password) => {
         try {
-            const response = await axios.post("/api/employee/login", {
+            const response = await axios.post(`${API_URL}/employee/login`, {
                 email,
                 password,
             });
@@ -80,7 +83,7 @@ export default function useAuth() {
         try {
             console.log(old_password, new_password);
             const response = await axios.put(
-                "/api/employee/changePassword",
+                `${API_URL}/employee/changePassword`,
                 {
                     old_password,
                     new_password,

@@ -7,6 +7,8 @@ import { UserRound } from "lucide-react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function HomePage() {
     const [employeeData, setEmployeeData] = useState([]);
     const [fetchingDataLoading, setFetchingDataLoading] = useState(true);
@@ -17,7 +19,7 @@ export default function HomePage() {
         const getLogs = async () => {
             try {
                 const response = await axios.get(
-                    "/api/manager/getLogsByManager",
+                    `${API_URL}/manager/getLogsByManager`,
                     {
                         headers: {
                             Authorization: `Bearer ${Cookies.get("token")}`,

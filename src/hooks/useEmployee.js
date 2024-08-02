@@ -1,11 +1,14 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+// Retrieve the API URL from environment variables
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function useEmployee() {
     const getAllEmployees = async () => {
         try {
             const response = await axios.get(
-                "/api/manager/getAllEmployeeByManager",
+                `${API_URL}/manager/getAllEmployeeByManager`,
                 {
                     headers: {
                         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -23,7 +26,7 @@ export default function useEmployee() {
     const addEmployee = async (name, email, division, salary) => {
         try {
             const response = await axios.post(
-                "/api/manager/addEmployee",
+                `${API_URL}/manager/addEmployee`,
                 {
                     name,
                     email,
@@ -46,7 +49,7 @@ export default function useEmployee() {
     const deleteEmployee = async (id) => {
         try {
             const response = await axios.delete(
-                `/api//manager/deleteEmployeeByUid/${id}`,
+                `${API_URL}/manager/deleteEmployeeByUid/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -63,7 +66,7 @@ export default function useEmployee() {
     const updateEmployeeByManager = async (id, division, salary) => {
         try {
             const response = await axios.put(
-                `/api/manager/updateEmployeeByUid/${id}`,
+                `${API_URL}/manager/updateEmployeeByUid/${id}`,
                 {
                     division,
                     salary,
@@ -83,7 +86,7 @@ export default function useEmployee() {
 
     const getEmployee = async () => {
         try {
-            const response = await axios.get(`/api/employee/getByUid`, {
+            const response = await axios.get(`${API_URL}/employee/getByUid`, {
                 headers: {
                     Authorization: `Bearer ${Cookies.get("token")}`,
                 },
@@ -107,7 +110,7 @@ export default function useEmployee() {
     ) => {
         try {
             const response = await axios.put(
-                "/api/employee/updateByUid",
+                `${API_URL}/employee/updateByUid`,
                 {
                     name,
                     picture_url,
