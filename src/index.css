@@ -11,15 +11,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.table-scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 5px;
 }
 
-.table-scrollbar::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #4f4f4f;
 }
 
-.table-scrollbar::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
