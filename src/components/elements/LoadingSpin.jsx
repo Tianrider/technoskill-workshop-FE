@@ -1,12 +1,20 @@
-import { SunspotLoader } from "react-awesome-loaders";
+import DotleLoader from "react-spinners/DotLoader";
+
+const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "red",
+};
 
 export default function LoadingSpin() {
     return (
-        <SunspotLoader
-            gradientColors={["#FF8901", "#E0E700"]}
-            shadowColor={"#FF8901"}
-            desktopSize={"128px"}
-            mobileSize={"100px"}
+        <DotleLoader
+            color={"#FF8901"}
+            loading={true}
+            cssOverride={override}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
         />
     );
 }
