@@ -34,13 +34,6 @@ export default function EditPopUp({
                                 </option>
                             ))}
                         </select>
-                        {/* <input
-                            type="text"
-                            value={newData.division}
-                            onChange={handleChange}
-                            name="division"
-                            className="w-1/2 rounded-md border-[1px] border-gray-500/50 bg-primary-gray px-2 py-1"
-                        /> */}
                         <label htmlFor="salary">Salary:</label>
                         <input
                             type="number"
@@ -68,6 +61,10 @@ export default function EditPopUp({
                                     className="aspect-square w-24 rounded-full object-cover"
                                 />
                             </div>
+                        </div>
+                        <div className="grid grid-cols-[120px_1fr] items-center gap-4">
+                            <p>Email:</p>
+                            <p>{item.email || "empty"}</p>
                         </div>
                         <div className="grid grid-cols-[120px_1fr] items-center gap-4">
                             <p>Salary:</p>

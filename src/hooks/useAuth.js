@@ -15,9 +15,7 @@ export default function useAuth() {
                 password,
             });
 
-            console.log(response);
             if (response.data.data.token) {
-                console.log(response.data.data.token);
                 Cookies.set("token", response.data.data.token);
             }
 
@@ -66,9 +64,7 @@ export default function useAuth() {
                 password,
             });
 
-            console.log(response);
             if (response.data.data.token) {
-                console.log(response.data.data.token);
                 Cookies.set("token", response.data.data.token);
             }
 
@@ -81,7 +77,6 @@ export default function useAuth() {
 
     const changePassword = async (old_password, new_password) => {
         try {
-            console.log(old_password, new_password);
             const response = await axios.put(
                 `${API_URL}/employee/changePassword`,
                 {

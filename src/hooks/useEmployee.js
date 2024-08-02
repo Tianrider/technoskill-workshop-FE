@@ -15,7 +15,6 @@ export default function useEmployee() {
                     },
                 },
             );
-            console.log(response);
             return response.data;
         } catch (error) {
             console.error(error);

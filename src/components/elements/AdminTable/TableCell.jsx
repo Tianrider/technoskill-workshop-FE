@@ -69,6 +69,10 @@ const TableCell = ({ item }) => {
         );
     };
 
+    const formatCurrency = (number) => {
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+    };
+
     return (
         <>
             {editPopUp && (
@@ -104,10 +108,10 @@ const TableCell = ({ item }) => {
                 <td className="truncate px-4">{item.name}</td>
                 <td className="truncate px-4">{item.division}</td>
                 <td className="hidden truncate px-4 md:table-cell">
-                    {item.salary}
+                    {formatCurrency(item.salary)}
                 </td>
                 <td className="px-4">
-                    <div className="relative flex items-center justify-center gap-2 md:justify-start">
+                    <div className="flex items-center justify-center gap-2 md:justify-start">
                         <button
                             className="hidden rounded-md border-[1px] border-gray-400 border-opacity-20 px-2 py-2 hover:bg-primary-black md:block"
                             onClick={() => setEditPopUp(true)}

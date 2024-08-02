@@ -53,7 +53,6 @@ function LoginEmployeePage() {
             if (token) {
                 try {
                     const response = await verifyToken(token);
-                    console.log(response);
                     if (
                         response.data.role === "employee" &&
                         response.data.isValid

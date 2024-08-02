@@ -19,16 +19,17 @@ export default function MyInfoPage() {
     });
     const { getEmployee, updateEmployee } = useEmployee();
     const [editMode, setEditMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchData = async () => {
+        setIsLoading(true);
         const data = await getEmployee();
-        console.log("data", data);
         setUserData(data.data);
+        setIsLoading(false);
     };
 
     const updateData = async (data) => {
         const formData = new FormData();
-        console.log("img", data.picture_url);
         formData.append("image", data.picture_url.split(",")[1]);
 
         try {
@@ -41,8 +42,8 @@ export default function MyInfoPage() {
                     },
                 },
             );
-            console.log(response.data.data.display_url);
-            data.picture_url = response.data.data.display_url;
+            const parts = response.data.data.display_url.split("ibb.co");
+            data.picture_url = parts[0] + "ibb.co.com" + parts[1];
         } catch (error) {
             console.error("Error uploading image:", error);
         }
@@ -65,7 +66,6 @@ export default function MyInfoPage() {
         toast.promise(updateData(data), {
             loading: "Updating data...",
             success: (data) => {
-                console.log(data);
                 setEditMode(false);
                 setUserData(data.data);
                 return "Data updated successfully";
@@ -86,14 +86,17 @@ export default function MyInfoPage() {
             <DashboardElement />
             <div className="ml-0 h-full w-full md:ml-36">
                 <div className="flex h-full w-full flex-col gap-4 p-8 md:gap-8">
-                    <PersonalInformation
-                        userData={userData}
-                        setUserData={setUserData}
-                        updateData={handleUpdateDataPromise}
-                        editMode={editMode}
-                        setEditMode={setEditMode}
-                    />
-                    <ChangePassword />
+                    <>
+                        <PersonalInformation
+                            userData={userData}
+                            setUserData={setUserData}
+                            updateData={handleUpdateDataPromise}
+                            editMode={editMode}
+                            setEditMode={setEditMode}
+                            isLoading={isLoading}
+                        />
+                        <ChangePassword />
+                    </>
                 </div>
             </div>
         </div>

@@ -26,8 +26,11 @@ export default function HomePage() {
                         },
                     },
                 );
-                console.log("logs", response.data.data);
-                setLogs(response.data.data);
+                console.log(response.data.data[0]);
+                const sortedLogs = response.data.data.sort(
+                    (a, b) => new Date(b.time) - new Date(a.time),
+                );
+                setLogs(sortedLogs);
             } catch (error) {
                 console.error(error);
             }
@@ -52,7 +55,7 @@ export default function HomePage() {
     }, []);
 
     const formatCurrency = (number) => {
-        return `Rp ${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
+        return `Rp${number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}`;
     };
 
     return (
@@ -87,11 +90,11 @@ export default function HomePage() {
                                     )}
                                 </div>
                                 <h1 className="text-[1vw] font-bold tracking-widest">
-                                    Total Salary to be Paid
+                                    Total Salary to Be Paid
                                 </h1>
                             </div>
                             <div className="flex h-full flex-1 flex-col rounded-md border-2 border-gray-500 border-opacity-10 bg-secondary-gray p-4 text-white">
-                                <div className="z-10 h-full w-full overflow-auto">
+                                <div className="hidden-scrollbar z-10 h-full w-full overflow-auto">
                                     <table className="z-10 w-full table-fixed">
                                         <thead className="sticky top-0 z-10 border-b-[1px] border-gray-500/50 bg-secondary-gray text-primary-orange">
                                             <tr>

@@ -35,7 +35,6 @@ function LoginPage() {
             if (token) {
                 try {
                     const response = await verifyToken(token);
-                    console.log(response);
                     if (
                         response.data.role === "manager" &&
                         response.data.isValid

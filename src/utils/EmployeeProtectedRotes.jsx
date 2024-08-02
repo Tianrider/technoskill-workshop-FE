@@ -16,7 +16,6 @@ const EmployeeProtectedRoutes = () => {
             if (token) {
                 try {
                     const response = await verifyToken(token);
-                    console.log(response);
                     setUserRole(response.data.role);
                     setIsAuth(
                         response.data.role === "employee" &&
